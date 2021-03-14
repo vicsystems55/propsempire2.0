@@ -1,0 +1,140 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return redirect('/index');
+});
+
+Auth::routes();
+Route::get('logout', 'QovexController@logout');
+
+Route::get('pages-login', 'QovexController@index');
+Route::get('pages-login-2', 'QovexController@index');
+Route::get('pages-register', 'QovexController@index');
+Route::get('pages-register-2', 'QovexController@index');
+Route::get('pages-recoverpw', 'QovexController@index');
+Route::get('pages-recoverpw-2', 'QovexController@index');
+Route::get('pages-lock-screen', 'QovexController@index');
+Route::get('pages-lock-screen-2', 'QovexController@index');
+Route::get('pages-404', 'QovexController@index');
+Route::get('pages-500', 'QovexController@index');
+Route::get('pages-maintenance', 'QovexController@index');
+Route::get('pages-comingsoon', 'QovexController@index');
+Route::post('login-status', 'QovexController@checkStatus');
+
+
+// You can also use auth middleware to prevent unauthenticated users
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    // Route::get('{any}', 'QovexController@index');
+});
+
+Route::get('/choose', 'ChooseRoleController@index')->name('choose');
+
+Route::get('/account_logout', 'RoutingController@logout')->name('account_logout');
+
+// route group for agents
+
+Route::group(['middleware' => ['auth','agents'], 'prefix' => 'agents'], function(){
+
+    Route::get('/', 'AgentsPageController@index')->name('agents');
+    
+    Route::get('/notifications', 'AgentsPageController@notifications')->name('agents.notifications');
+
+    Route::get('/add_property', 'AgentsPageController@add_property')->name('agents.add_property');
+
+    Route::get('/all_listings', 'AgentsPageController@all_listings')->name('agents.all_listings');
+
+    Route::get('/all_plans', 'AgentsPageController@all_plans')->name('agents.all_plans');
+
+    Route::get('/my_subscriptions', 'AgentsPageController@my_subscriptions')->name('agents.my_subscriptions');
+
+    Route::get('/history', 'AgentsPageController@history')->name('agents.history');
+
+    Route::get('/accounts', 'AgentsPageController@accounts')->name('agents.accounts');
+
+    Route::get('/messages', 'AgentsPageController@messages')->name('agents.messages');
+
+    Route::get('/notifications', 'AgentsPageController@notifications')->name('agents.notifications');
+
+   
+	
+});
+
+// route group for agencies
+
+Route::group(['middleware' => ['auth','agency'], 'prefix' => 'agency'], function(){
+
+    Route::get('/', 'AgencyPageController@index')->name('agency');
+    
+    Route::get('/notifications', 'AgencyPageController@notifications')->name('agency.notifications');
+
+    Route::get('/add_property', 'AgencyPageController@add_property')->name('agency.add_property');
+
+    Route::get('/all_listings', 'AgencyPageController@all_listings')->name('agency.all_listings');
+
+    Route::get('/all_plans', 'AgencyPageController@all_plans')->name('agency.all_plans');
+
+    Route::get('/my_subscriptions', 'AgencyPageController@my_subscriptions')->name('agency.my_subscriptions');
+
+    Route::get('/history', 'AgencyPageController@history')->name('agency.history');
+
+    Route::get('/accounts', 'AgencyPageController@accounts')->name('agency.accounts');
+
+    Route::get('/messages', 'AgencyPageController@messages')->name('agency.messages');
+
+    Route::get('/notifications', 'AgencyPageController@notifications')->name('agency.notifications');
+	
+});
+
+
+// route group for vendor
+
+Route::group(['middleware' => ['auth','vendor'], 'prefix' => 'vendor'], function(){
+
+    Route::get('/', 'VendorPageController@index')->name('vendor');
+
+    Route::get('/notifications', 'VendorPageController@notifications')->name('vendor.notifications');
+
+    Route::get('/all_plans', 'VendorPageController@all_plans')->name('vendor.all_plans');
+
+    Route::get('/messages', 'VendorPageController@messages')->name('vendor.messages');
+
+    Route::get('/notifications', 'VendorPageController@notifications')->name('vendor.notifications');
+
+	
+});
+
+
+// route group for admin
+
+Route::group(['middleware' => ['auth','admin'], 'prefix' => 'admin'], function(){
+
+    Route::get('/', 'AdminPageController@index')->name('admin');
+
+    Route::get('/notifications', 'AdminPageController@notifications')->name('admin.notifications');
+
+    Route::get('/add_property', 'AdminPageController@add_property')->name('admin.add_property');
+
+    Route::get('/all_listings', 'AdminPageController@all_listings')->name('admin.all_listings');
+
+    Route::get('/all_plans', 'AdminPageController@all_plans')->name('admin.all_plans');
+
+    Route::get('/messages', 'AdminPageController@messages')->name('admin.messages');
+
+    Route::get('/notifications', 'AdminPageController@notifications')->name('admin.notifications');
+
+	
+});
