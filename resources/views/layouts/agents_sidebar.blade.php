@@ -14,6 +14,22 @@
                 <p class="text-body mt-1 mb-0 font-size-13">{{Auth::user()->role}}</p>
 
             </div>
+
+            <div class="">
+
+            <?php
+                $my_subscription = App\MemberSubscription::where('agent_id', Auth::user()->id)->first();
+            ?>
+
+                <div class="card">
+                    <div class="card-body">
+                    <h6>Current Subscription:</h6>
+                        <h4>{{$my_subscription->plan_name??'FREE PLAN'}}</h4>
+                    </div>
+                </div>
+                
+
+            </div>
         </div>
 
         <!--- Sidemenu -->

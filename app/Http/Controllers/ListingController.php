@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
+
 use App\Listing;
+
+use Auth;
+
+
 use Illuminate\Http\Request;
 
 class ListingController extends Controller
@@ -36,6 +42,41 @@ class ListingController extends Controller
     public function store(Request $request)
     {
         //
+
+        $this->validate($request,[
+            'title'=>'required',
+            'description'=>'required',
+            'location' => 'required'
+         ]);
+
+         $listing = Listing::Create([
+            'slug' => $request->slug,
+            'posted_by' => $request->posted_by,
+            'title' => $request->title,
+            'description' => $request->description,
+            'location' => $request->location,
+            'category_id' => $request->category_id,
+            'type_id' => $request->type_id,
+            'subtype_id' => $request->subtype_id,
+            'bedrooms' => $request->bedrooms,
+            'toilets' => $request->toilets,
+            'bathrooms' => $request->bathrooms,
+            'parking' => $request->parking,
+            'total_area' => $request->total_area,
+            'covered_area' => $request->covered_area,
+            'price' => $request->price,
+            'discount' => $request->discount
+            
+         ]);
+
+         $listing = Listing::Create($request->all() + [
+            'posted_by' => Auth::user()->id,  
+            'slug' => Str::random(32)
+            ]);
+
+
+
+
     }
 
     /**
