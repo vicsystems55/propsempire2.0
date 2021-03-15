@@ -152,8 +152,21 @@ class AgentsPageController extends Controller
     {
         //
 
-        return view('agents.all_plans',[
+        $all_plans = SubscriptionPlan::get();
 
+        return view('agents.all_plans',[
+            'all_plans' => $all_plans
+        ]);
+    }
+
+    public function single_plan_details($plan_name)
+    {
+        //
+
+        $single_plan = SubscriptionPlan::where('plan_name', $plan_name)->first();
+
+        return view('agents.single_plan_details',[
+            'single_plan' => $single_plan
         ]);
     }
 

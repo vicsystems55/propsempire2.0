@@ -80,6 +80,8 @@ Route::group(['middleware' => ['auth','agents'], 'prefix' => 'agents'], function
 
     Route::get('/all_plans', 'AgentsPageController@all_plans')->name('agents.all_plans');
 
+    Route::get('/single_plan_details/{plan_name}', 'AgentsPageController@single_plan_details')->name('agents.single_plan_details');
+
     Route::get('/my_subscriptions', 'AgentsPageController@my_subscriptions')->name('agents.my_subscriptions');
 
     Route::get('/history', 'AgentsPageController@history')->name('agents.history');
