@@ -73,6 +73,81 @@ class AgentsPageController extends Controller
         ]);
     }
 
+    public function free_listings()
+    {
+        //
+
+        return view('agents.free_listings',[
+
+        ]);
+    }
+
+    public function premium_listings()
+    {
+        //
+
+        return view('agents.premium_listings',[
+
+        ]);
+    }
+
+    public function published_listings()
+    {
+        //
+
+        return view('agents.published_listings',[
+
+        ]);
+    }
+
+    public function unpublished_listings()
+    {
+        //
+
+        return view('agents.unpublished_listings',[
+
+        ]);
+    }
+
+    public function expired_listings()
+    {
+        //
+
+        return view('agents.expired_listings',[
+
+        ]);
+    }
+
+    public function inactive_listings()
+    {
+        //
+
+        return view('agents.inactive_listings',[
+
+        ]);
+    }
+
+    public function favourite_listings()
+    {
+        //
+
+        return view('agents.favourite_listings',[
+
+        ]);
+    }
+
+
+    public function single_listing($slug)
+    {
+        //
+
+        // $listing_details = Listing::where('slug', $slug)->first();
+
+        return view('agents.single_listing_details',[
+                // 'listing_details' => $listing_details
+        ]);
+    }
+
     public function all_plans()
     {
         //

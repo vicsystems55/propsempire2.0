@@ -45,6 +45,11 @@ Route::get('/choose', 'ChooseRoleController@index')->name('choose');
 
 Route::get('/account_logout', 'RoutingController@logout')->name('account_logout');
 
+// Laravel 5.1.17 and above
+Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
+
+Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
+
 // route group for agents
 
 Route::group(['middleware' => ['auth','agents'], 'prefix' => 'agents'], function(){
@@ -56,6 +61,22 @@ Route::group(['middleware' => ['auth','agents'], 'prefix' => 'agents'], function
     Route::get('/add_property', 'AgentsPageController@add_property')->name('agents.add_property');
 
     Route::get('/all_listings', 'AgentsPageController@all_listings')->name('agents.all_listings');
+
+    Route::get('/free_listings', 'AgentsPageController@free_listings')->name('agents.free_listings');
+
+    Route::get('/premium_listings', 'AgentsPageController@premium_listings')->name('agents.premium_listings');
+
+    Route::get('/published_listings', 'AgentsPageController@published_listings')->name('agents.published_listings');
+
+    Route::get('/unpublished_listings', 'AgentsPageController@unpublished_listings')->name('agents.unpublished_listings');
+
+    Route::get('/expired_listings', 'AgentsPageController@expired_listings')->name('agents.expired_listings');
+
+    Route::get('/inactive_listings', 'AgentsPageController@inactive_listings')->name('agents.inactive_listings');
+
+    Route::get('/favourite_listings', 'AgentsPageController@favourite_listings')->name('agents.favourite_listings');
+
+    Route::get('/single_listing/{slug}', 'AgentsPageController@single_listing')->name('agents.single_listing');
 
     Route::get('/all_plans', 'AgentsPageController@all_plans')->name('agents.all_plans');
 

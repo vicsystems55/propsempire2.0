@@ -55,4 +55,5 @@
 <!-- Plugins js -->
 <script src="{{URL::asset('/libs/dropzone/dropzone.min.js')}}"></script>
 
+
 @endsection

@@ -68,13 +68,13 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('agents.all_listings')}}">All Listings</a></li>
-                        <li><a href="layouts-compact-sidebar">Free Listings</a></li>
-                        <li><a href="layouts-icon-sidebar">Premium Listings</a></li>
-                        <li><a href="layouts-boxed">Published Listings</a></li>
-                        <li><a href="layouts-preloader">Unpublished Listings</a></li>
-                        <li><a href="layouts-preloader">Expired Listings</a></li>
-                        <li><a href="layouts-preloader">Inactive Listings</a></li>
-                        <li><a href="layouts-preloader">Favourites</a></li>
+                        <li><a href="{{route('agents.free_listings')}}">Free Listings</a></li>
+                        <li><a href="{{route('agents.premium_listings')}}">Premium Listings</a></li>
+                        <li><a href="{{route('agents.published_listings')}}">Published Listings</a></li>
+                        <li><a href="{{route('agents.unpublished_listings')}}">Unpublished Listings</a></li>
+                        <li><a href="{{route('agents.expired_listings')}}">Expired Listings</a></li>
+                        <li><a href="{{route('agents.inactive_listings')}}">Inactive Listings</a></li>
+                        <li><a href="{{route('agents.favourite_listings')}}">Favourites</a></li>
                     </ul>
                 </li>
 
