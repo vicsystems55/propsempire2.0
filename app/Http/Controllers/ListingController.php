@@ -49,9 +49,11 @@ class ListingController extends Controller
             'location' => 'required'
          ]);
 
+        //  dd($request->all());
+
          $listing = Listing::Create([
             'slug' =>  Str::random(7),
-            'posted_by' => Auth::user()->Id,
+            'posted_by' => Auth::id(),
             'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,
@@ -61,7 +63,7 @@ class ListingController extends Controller
             'bedrooms' => $request->bedrooms,
             'toilets' => $request->toilets,
             'bathrooms' => $request->bathrooms,
-            'parking' => $request->parking,
+            'parking' => $request->parkings,
             'total_area' => $request->total_area,
             'covered_area' => $request->covered_area,
             'price' => $request->price,
@@ -69,13 +71,7 @@ class ListingController extends Controller
             
          ]);
 
-         $listing = Listing::Create($request->all() + [
-            'posted_by' => Auth::user()->id,  
-            'slug' => Str::random(32)
-            ]);
-
-
-
+        return redirect('/agents/single_listing/'.$listing->slug);
 
     }
 

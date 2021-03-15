@@ -61,7 +61,7 @@
 
                                 <div class="form-group">
                                     <label for="">Category</label>
-                                    <select name="" id="" class="form-control">
+                                    <select name="category_id" id="_cat"  class="form-control">
                                         <option value="">--Select Category--</option>
                                         @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option> 
@@ -71,7 +71,7 @@
 
                                 <div class="form-group">
                                     <label for="">Type</label>
-                                    <select name="" id="" class="form-control">
+                                    <select name="type_id"  class="form-control">
                                         <option value="">--Select Type--</option>
                                         @foreach($types as $type)
                                         <option value="{{$type->id}}">{{$type->name}}</option> 
@@ -81,13 +81,14 @@
 
                                 <div class="form-group">
                                     <label for="">Subtype</label>
-                                    <select name="" id="" class="form-control">
+                                    <select name="subtype_id"  class="form-control">
                                         <option value="">--Select Subtype--</option>
                                         @foreach($subtypes as $subtype)
                                         <option value="{{$subtype->id}}">{{$subtype->name}}</option> 
                                         @endforeach
                                     </select>
                                 </div>
+                                
 
                                 
 
@@ -108,28 +109,28 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label">Bedrooms</label>
-                                        <input type="number" value="0"  class="form-control">
+                                        <input type="number" value="0" name="bedrooms"  class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label">Bathroom</label>
-                                        <input type="number" value="0" name="bathroom"  class="form-control">
+                                        <input type="number" value="0" name="bathrooms"  class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label">Toilet</label>
-                                        <input type="number" value="0" name="toilet"  class="form-control">
+                                        <input type="number" value="0" name="toilets"  class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label">Parking</label>
-                                        <input type="number" value="0" name="parking"  class="form-control">
+                                        <input type="number" value="0" name="parkings"  class="form-control">
                                     </div>
                                 </div>
 
@@ -157,7 +158,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label">Discount</label>
-                                        <input type="number" value="0"  class="form-control">
+                                        <input type="number" value="0" name="discount"  class="form-control">
                                     </div>
                                 </div>
 
@@ -221,12 +222,21 @@ $(document).ready(function () {
 });
 
 $(document).on('change', '#'+searchInput, function () {
-    document.getElementById('latitude_input').value = '';
-    document.getElementById('longitude_input').value = '';
+    // document.getElementById('latitude_input').value = '';
+    // document.getElementById('longitude_input').value = '';
     
-    document.getElementById('latitude_view').innerHTML = '';
-    document.getElementById('longitude_view').innerHTML = '';
+    // document.getElementById('latitude_view').innerHTML = '';
+    // document.getElementById('longitude_view').innerHTML = '';
 });
+</script>
+
+<script>
+
+    $().onchange({
+
+    });
+
+
 </script>
 
 

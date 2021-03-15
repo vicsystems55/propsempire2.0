@@ -7,10 +7,17 @@ File: Form wizard
 */
 
 $(function ()
-{
+{   
     $("#form-horizontal").steps({
         headerTag: "h3",
         bodyTag: "fieldset",
-        transitionEffect: "slide"
+        transitionEffect: "slide",
+        onFinished: function (event, currentIndex) {
+            console.log('me');
+          }
     });
+
+ 
+        
 });
+
