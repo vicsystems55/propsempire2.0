@@ -48,6 +48,12 @@ Route::get('/account_logout', 'RoutingController@logout')->name('account_logout'
 // Laravel 5.1.17 and above
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 
+
+
+Route::get('/create_subscription', 'MemberSubscriptionController@create_subscription')->name('create_subscription');
+
+Route::view('/sub_success', 'agents/sub_success')->name('sub_success');
+
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 
 // route group for agents
@@ -91,6 +97,8 @@ Route::group(['middleware' => ['auth','agents'], 'prefix' => 'agents'], function
     Route::get('/messages', 'AgentsPageController@messages')->name('agents.messages');
 
     Route::get('/notifications', 'AgentsPageController@notifications')->name('agents.notifications');
+
+
 
    
 	

@@ -32,7 +32,7 @@
 
                 <?php
 
-                    $notifications = App\Notification::where('_for', Auth::user()->id)->where('status','active')->get();
+                    $notifications = App\Notification::where('user_id', Auth::user()->id)->where('status','active')->get();
 
                 ?>
 

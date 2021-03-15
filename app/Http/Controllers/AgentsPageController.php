@@ -12,6 +12,12 @@ use App\Listing;
 
 use App\Message;
 
+use App\Category;
+
+use App\Type;
+
+use App\ListingSubType;
+
 use App\MemberSubscription;
 
 use Auth;
@@ -59,8 +65,18 @@ class AgentsPageController extends Controller
     {
         //
 
-        return view('agents.add_property',[
+        $categories = Category::latest()->get();
 
+        $types = Type::latest()->get();
+
+        $subtypes = ListingSubType::latest()->get();
+
+
+
+        return view('agents.add_property',[
+            'categories' => $categories,
+            'types' => $types,
+            'subtypes' => $subtypes
         ]);
     }
 

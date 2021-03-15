@@ -16,13 +16,13 @@ class CreateNotificationsTable extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('_for')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->string('title');
             $table->string('body');
             $table->string('status')->default('unread');
 
 
-            $table->foreign('_for')->references('id')->on('users');
+            $table->foreign('for')->references('id')->on('users');
             $table->timestamps();
         });
     }

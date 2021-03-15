@@ -41,7 +41,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="">
-                                            <h5 class="">0</h5>
+                                            <h5 class="">{{$my_subscription->count()}}</h5>
                                             <p>SUBSCRIPTIONS</p>
                                             <div>
                                                 <a href="#" class="btn btn-outline-success btn-sm">View more</a>

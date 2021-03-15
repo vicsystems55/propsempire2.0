@@ -50,8 +50,8 @@ class ListingController extends Controller
          ]);
 
          $listing = Listing::Create([
-            'slug' => $request->slug,
-            'posted_by' => $request->posted_by,
+            'slug' =>  Str::random(7),
+            'posted_by' => Auth::user()->Id,
             'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,
