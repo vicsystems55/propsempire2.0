@@ -12,6 +12,18 @@
         <link rel="shortcut icon" href="{{ URL::asset('images/favicon.ico')}}">
         @include('layouts.head')
   </head>
+  <div id="preloader">
+        <div id="status">
+            <div class="spinner-chase">
+                <div class="chase-dot"></div>
+                <div class="chase-dot"></div>
+                <div class="chase-dot"></div>
+                <div class="chase-dot"></div>
+                <div class="chase-dot"></div>
+                <div class="chase-dot"></div>
+            </div>
+        </div>
+    </div>
     @yield('body')
 
     @yield('content')
