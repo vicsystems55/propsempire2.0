@@ -22,7 +22,7 @@ class CreateNotificationsTable extends Migration
             $table->string('status')->default('unread');
 
 
-            $table->foreign('for')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
