@@ -37,6 +37,11 @@ class CreateListingsTable extends Migration
 
             $table->boolean('premium')->default(0);
             $table->boolean('frontpage_featured')->default(0);
+            
+
+            $table->bigInteger('member_subscription_id')->unsigned()->nullable();
+
+            $table->string('expiry_date')->nullable();
 
             $table->integer('views')->default('0');
             $table->integer('likes')->default('0');
@@ -44,7 +49,7 @@ class CreateListingsTable extends Migration
           
 
           
-
+            $table->foreign('member_subscription_id')->references('id')->on('member_subscriptions');
             $table->foreign('posted_by')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('type_id')->references('id')->on('types');

@@ -19,10 +19,10 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="">
-                                            <h5 class="">0</h5>
+                                            <h5 class="">{{$my_listings->count()}}</h5>
                                             <h6 class="font-weight-bold">LISTINGS</h6>
 
-                                            <h5 class="">0</h5>
+                                            <h5 class="">{{$my_listings->where('premium','1')->count()}}</h5>
                                             <h6 class="font-weight-bold">PREMIUM LISTINGS</h6>
 
                                             <h5 class="">0</h5>

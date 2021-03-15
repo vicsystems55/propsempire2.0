@@ -36,7 +36,7 @@
 
                 ?>
 
-                <div class="dropdown d-inline-block">
+                <div class="dropdown d-lg-inline-block ml-1">
                     <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="mdi mdi-bell-outline"></i>
                         <span class="badge badge-danger badge-pill">{{$notifications->count()}}</span>
@@ -93,7 +93,7 @@
 
                 <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded-circle header-profile-user" src="images/users/avatar-2.jpg" alt="Header Avatar">
+                        <img class="rounded-circle header-profile-user" src="{{config('app.url')}}images/users/avatar-2.jpg" alt="Header Avatar">
                         <span class="d-none d-xl-inline-block ml-1">{{Auth::user()->name}}</span>
                         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     </button>

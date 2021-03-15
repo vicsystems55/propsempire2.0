@@ -18,7 +18,12 @@ use App\Type;
 
 use App\ListingSubType;
 
+use App\Notification;
+
+
 use App\MemberSubscription;
+
+use Carbon\Carbon;
 
 use Auth;
 
@@ -38,7 +43,7 @@ class AgentsPageController extends Controller
 
         $my_messages = Message::where('_to', Auth::user()->id)->get();
 
-        $my_listings = Listing::where('posted_by', Auth::user()->id)->where('status', 'active')->first();
+        $my_listings = Listing::where('posted_by', Auth::user()->id)->get();
 
 
 
@@ -56,8 +61,10 @@ class AgentsPageController extends Controller
     {
         //
 
-        return view('agents.notifications',[
+        $my_notificaions = Notification::where('user_id', Auth::id())->paginate(2);
 
+        return view('agents.notifications',[
+            'my_notifications' => $my_notificaions
         ]);
     }
 
@@ -84,32 +91,39 @@ class AgentsPageController extends Controller
     {
         //
 
-        return view('agents.all_listings',[
+        $all_listings = Listing::where('posted_by', Auth::id())->with('categories')->with('types')->with('subtypes')->get();
 
+        // dd($all_listings);
+
+        return view('agents.all_listings',[
+            'all_listings' => $all_listings
         ]);
     }
 
     public function free_listings()
     {
         //
+        $free_listings = Listing::where('posted_by', Auth::id())->with('categories')->with('types')->with('subtypes')->where('status', 'inactive')->get();
 
         return view('agents.free_listings',[
-
+            'free_listings' => $free_listings
         ]);
     }
 
     public function premium_listings()
     {
         //
+        $premium_listings = Listing::where('posted_by', Auth::id())->with('categories')->with('types')->with('subtypes')->where('premium', '1')->get();
 
         return view('agents.premium_listings',[
-
+            'premium_listings' => $premium_listings
         ]);
     }
 
     public function published_listings()
     {
         //
+        $published_listings = Listing::where('posted_by', Auth::id())->with('categories')->with('types')->with('subtypes')->where('status', 'published')->get();
 
         return view('agents.published_listings',[
 
@@ -119,15 +133,17 @@ class AgentsPageController extends Controller
     public function unpublished_listings()
     {
         //
+        $unpublished_listings = Listing::where('posted_by', Auth::id())->with('categories')->with('types')->with('subtypes')->where('status', 'inactive')->get();
 
         return view('agents.unpublished_listings',[
-
+            'unpublished_listings' => $unpublished_listings
         ]);
     }
 
     public function expired_listings()
     {
         //
+
 
         return view('agents.expired_listings',[
 
@@ -157,10 +173,11 @@ class AgentsPageController extends Controller
     {
         //
 
-        // $listing_details = Listing::where('slug', $slug)->first();
+        $single_listing = Listing::where('slug', $slug)->with('categories')->with('types')->with('subtypes')->first();
 
         return view('agents.single_listing_details',[
-                // 'listing_details' => $listing_details
+                
+            'single_listing' => $single_listing
         ]);
     }
 

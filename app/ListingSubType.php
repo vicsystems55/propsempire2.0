@@ -9,4 +9,9 @@ class ListingSubType extends Model
     //
 
     protected $guarded = [];
+
+    public function listings()
+    {
+        return $this->hasMany('App\Listing', 'subtype_id');
+    }
 }

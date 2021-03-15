@@ -18,9 +18,11 @@ class ListingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function make_premium(Request $request)
     {
         //
+
+        return back()->with('msg', 'Done');
     }
 
     /**
@@ -28,9 +30,29 @@ class ListingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function publish(Request $request)
     {
         //
+
+        // dd($request);
+
+        return 'yes married';
+
+        // return back()->with('msg', 'Done');
+    }
+
+    public function unpublish(Request $request)
+    {
+        //
+
+        return back()->with('msg', 'Done');
+    }
+
+    public function delete(Request $request)
+    {
+        //
+
+        return back()->with('msg', 'Done');
     }
 
     /**

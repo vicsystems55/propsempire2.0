@@ -1,4 +1,4 @@
-@extends('layouts.agents_master')
+@extends('layouts.master')
 
 @section('title') History @endsection
 

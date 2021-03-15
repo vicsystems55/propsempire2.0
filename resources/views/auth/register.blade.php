@@ -42,7 +42,36 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="row">
+
+                                    <div class="col-3">
+                                        <hr>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                       Choose Account Type
+                                    </div>
+                                    <div class="col-3">
+                                        <hr>
+                                    </div>
+
+                                    </div>
+
+                                    <div class="row mx-auto">
+                                        <div class="col-md-4 custom-control custom-radio mb-2">
+                                            <input type="radio" id="customRadio1" name="role" value="vendor" class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadio1">Vendor</label>
+                                        </div>
+                                        <div class="col-md-4 custom-control custom-radio">
+                                            <input type="radio" id="customRadio2" name="role" value="agent" class="custom-control-input" checked>
+                                            <label class="custom-control-label" for="customRadio2">Agent</label>
+                                        </div>
+                                        <div class="col-md-4 custom-control custom-radio">
+                                            <input type="radio" id="customRadio3" name="role" value="agency" class="custom-control-input" checked>
+                                            <label class="custom-control-label" for="customRadio3">Agency</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mt-2">
                                         <label for="name">{{ __('Name') }}</label>
                                         <input type="text" name="name" value="{{ old('name') }}" required autocomplete="name" class="form-control @error('name') is-invalid @enderror" autofocus id="name" placeholder="Enter name">
                                         @error('name')

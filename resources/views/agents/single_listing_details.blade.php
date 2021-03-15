@@ -21,7 +21,7 @@
             <div class="card-body">
                <div class="row">
                 <div class="col-md-4 text-center p-2">
-                    <button class="btn btn-primary shadow">PUBLISH</button>
+                    <button id="publish" class="btn btn-primary shadow">PUBLISH</button>
                 </div>
                 <div class="col-md-4 text-center p-2">
                     <button class="btn btn-primary shadow">PUBLISH AS PREMIUM </button>
@@ -39,31 +39,30 @@
         <div class="card">
             <div class="card-body">
                 
-                <h1 class="card-title"> Listing Title</h1>
+                <h1 class="card-title"> {{$single_listing->title}}</h1>
                 <p class="card-title-desc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero porro placeat tempore ipsum fugit,
-                     odio, ullam dolor nesciunt aut veniam dolorem,
+                    {{$single_listing->description}}
                 </p>
                 
                 <p>
-                <i class="fas fa-map-marker-alt"></i> location  
+                <i class="fas fa-map-marker-alt"></i> {{$single_listing->location}}  
                 </p>
 
                 <table class="pl-3">
                     <tr>
                         <td>Category:</td>
                         <td></td>
-                        <td>Rent</td>
+                        <td>{{$single_listing->categories->name}}</td>
                     </tr>
                     <tr>
                         <td>Type:</td>
                         <td></td>
-                        <td>Rent</td>
+                        <td>{{$single_listing->types->name}}</td>
                     </tr>
                     <tr>
                         <td>Subtype:</td>
                         <td></td>
-                        <td>Rent</td>
+                        <td>{{$single_listing->subtypes->name}}</td>
                     </tr>
                 </table>
 
@@ -72,24 +71,24 @@
                         <td>
                         <i class="fas fa-bed"></i><br>
                         Bedrooms:
-                          0
+                          {{$single_listing->bedrooms}}
                         </td>
                         <td>
                         <i class="fas fas fa-bath"></i><br>
                         Bathrooms:
-                          0
+                          {{$single_listing->bathrooms}}
                         </td>
                         <td>
                         <i class="fas fas fa-toilet"></i><br>
                         Toilets:
-                          0
+                          {{$single_listing->toilets}}
                         </td>     
                     </tr>
                     <tr>
                         <td>
                         <i class="fas fa-car"></i><br>
                         Parking:
-                          0
+                          {{$single_listing->parking}}
                         </td>                        
                     </tr>
 
@@ -99,12 +98,12 @@
                         <td>
                         <i class="fas fa-tape"></i><br>
                         Total Area:
-                        0
+                        {{$single_listing->total_area}} sqr.mtrs
                         </td>
                         <td>
                         <i class="fas fa-tape"></i><br>
                         Covered Area:
-                        0
+                        {{$single_listing->coverd_area}}
                         </td>
  
                     </tr>
@@ -282,6 +281,27 @@
         mode: 'lg-fade',
         cssEasing : 'cubic-bezier(0.25, 0, 0.25, 1)'
 
+    });
+
+</script>
+
+<script>
+
+    $('#publish').click(function(){
+        $.ajax('/publish', {
+            type: 'GET',  // http method
+            data: {
+                 slug: '{{$single_listing->slug}}'
+                
+                },  // data to submit
+            success: function (data, status, xhr) {
+                    alert('we')
+                // $('p').append('status: ' + status + ', data: ' + data);
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                    $('p').append('Error' + errorMessage);
+            }
+        });
     });
 
 </script>

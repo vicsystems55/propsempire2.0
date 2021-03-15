@@ -5,7 +5,7 @@
 
         <div class="user-wid text-center py-4">
             <div class="user-img">
-                <img src="images/users/avatar-2.jpg" alt="" class="avatar-md mx-auto rounded-circle">
+                <img src="{{config('app.url')}}images/users/avatar-2.jpg" alt="" class="avatar-md mx-auto rounded-circle">
             </div>
 
             <div class="mt-3">
@@ -25,6 +25,7 @@
                     <div class="card-body">
                     <h6>Current Subscription:</h6>
                         <h4>{{$my_subscription->plan_name??'FREE PLAN'}}</h4>
+                        <a href="" class="btn btn-success shadow">Upgrade</a>
                     </div>
                 </div>
                 
@@ -95,6 +96,13 @@
                     <a href="{{route('agents.notifications')}}" class=" waves-effect">
                         <i class="mdi mdi-calendar-text"></i>
                         <span>Notifications</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{route('agents.messages')}}" class=" waves-effect">
+                        <i class="mdi mdi-calendar-text"></i>
+                        <span>Messages</span>
                     </a>
                 </li>
 
