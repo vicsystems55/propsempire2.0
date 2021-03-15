@@ -52,6 +52,8 @@ Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 
 Route::get('/create_subscription', 'MemberSubscriptionController@create_subscription')->name('create_subscription');
 
+Route::post('/create_listing', 'ListingController@create_listing')->name('create_listing');
+
 Route::view('/sub_success', 'agents/sub_success')->name('sub_success');
 
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');

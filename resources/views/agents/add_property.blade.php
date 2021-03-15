@@ -30,8 +30,8 @@
                 <h4 class="card-title">Setup Listing</h4>
                 
 
-                <form id="form-horizontal" class="form-horizontal form-wizard-wrapper">
-
+                <form method="post" action="{{route('create_listing')}}" id="form-horizontal" class="form-horizontal form-wizard-wrapper">
+                    @csrf
 
                     <h3>Listing Details</h3>
 
