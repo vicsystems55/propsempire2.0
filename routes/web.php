@@ -54,6 +54,8 @@ Route::get('/create_subscription', 'MemberSubscriptionController@create_subscrip
 
 Route::post('/create_listing', 'ListingController@create_listing')->name('create_listing');
 
+Route::get('/get_monthly_report', 'ListingController@get_monthly_report')->name('get_monthly_report');
+
 Route::post('/upload_pix', 'ListingImageController@upload_pix')->name('upload_pix');
 
 Route::get('/publish', 'ListingController@publish')->name('publish_listing');

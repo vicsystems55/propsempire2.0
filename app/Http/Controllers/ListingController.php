@@ -20,6 +20,32 @@ class ListingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function get_monthly_report()
+    {
+        $march_views = Listing::where('posted_by', Auth::id())->whereMonth('created_at', '3')->sum('views');
+        $april_views = Listing::where('posted_by', Auth::id())->whereMonth('created_at', '4')->sum('views');
+        $may_views = Listing::where('posted_by', Auth::id())->whereMonth('created_at', '5')->sum('views');
+        $june_views = Listing::where('posted_by', Auth::id())->whereMonth('created_at', '6')->sum('views');
+        $july_views = Listing::where('posted_by', Auth::id())->whereMonth('created_at', '7')->sum('views');
+        $august_views = Listing::where('posted_by', Auth::id())->whereMonth('created_at', '8')->sum('views');
+        $sep_views = Listing::where('posted_by', Auth::id())->whereMonth('created_at', '9')->sum('views');
+
+        $views = array(
+            $march_views,
+            $april_views,
+            $may_views,
+            $june_views,
+            $july_views,
+            $august_views,
+            $sep_views
+        );
+
+        
+        
+
+        return $views;
+    }
     public function make_premium(Request $request)
     {
         //

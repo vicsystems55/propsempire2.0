@@ -78,7 +78,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title mb-4">Impressions Report</h4>
 
-                                    <div id="line-chart" class="apex-charts"></div>
+                                    <div id="chart" class="apex-charts"></div>
                                 </div>
                             </div>
                         </div>
@@ -373,4 +373,41 @@
         
         <!-- Calendar init -->
         <script src="{{ URL::asset('js/pages/dashboard.init.js')}}"></script>
+
+        <script>
+
+            var options = {
+            chart: {
+                type: 'line',
+                events:{
+
+                }
+            },
+            series: [{
+                name: 'views',
+                data: [0]
+            }],
+            xaxis: {
+                categories: ['MAR','APR','MAY','JUN','JUL', 'AUH','SEP', 'OCT', 'NOV', 'DEC']
+            }
+            }
+
+           
+
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+           
+
+            chart.render();
+
+            var url = '/get_monthly_report';
+
+            $.getJSON(url, function(response) {
+            chart.updateSeries([{
+               
+                data: response
+            }])
+            });
+
+        </script>
 @endsection
