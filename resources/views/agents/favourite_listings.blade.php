@@ -15,47 +15,40 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body table-responsive">
                 <h4 class="card-title">All Listings</h4>
-                <p class="card-title-desc">A powerful jQuery wizard plugin that supports accessibility and HTML5</p>
 
-                                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <table id="datatable" class="table table-striped " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>Title</th>
+                                              
+                                                <th>Category</th>
+                                                
+                                                <th>Created</th>
+                                                <th>More</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
+
+                                            @foreach($favourite_listings as $list)
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
+                                                <td>{{$list->title}}</td>
+                                                
+                                                <td>{{$list->categories->name}}</td>
+                                                
+                                                <td>{{$list->created_at->diffForHumans()}}</td>
+
+                                                <td>
+                                                    <a href="{{route('agents.single_listing', $list->slug)}}" class="btn btn-primary btn-sm shadow">Details</a>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td>Garrett Winters</td>
-                                                <td>Accountant</td>
-                                                <td>Tokyo</td>
-                                                <td>63</td>
-                                                <td>2011/07/25</td>
-                                                <td>$170,750</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ashton Cox</td>
-                                                <td>Junior Technical Author</td>
-                                                <td>San Francisco</td>
-                                                <td>66</td>
-                                                <td>2009/01/12</td>
-                                                <td>$86,000</td>
-                                            </tr>
+                                            @endforeach
+
+
+                                           
+                                           
                                             
                                         </tbody>
                                     </table>

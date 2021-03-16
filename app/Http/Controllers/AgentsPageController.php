@@ -127,7 +127,7 @@ class AgentsPageController extends Controller
         $published_listings = Listing::where('posted_by', Auth::id())->with('categories')->with('types')->with('subtypes')->where('status', 'published')->get();
 
         return view('agents.published_listings',[
-
+            'published_listings' => $published_listings
         ]);
     }
 
@@ -144,28 +144,33 @@ class AgentsPageController extends Controller
     public function expired_listings()
     {
         //
+        $expired_listings = Listing::where('posted_by', Auth::id())->with('categories')->with('types')->with('subtypes')->where('status', 'inactive')->get();
 
 
         return view('agents.expired_listings',[
-
+            'expired_listings' => $expired_listings
         ]);
     }
 
     public function inactive_listings()
     {
         //
+        $inactive_listings = Listing::where('posted_by', Auth::id())->with('categories')->with('types')->with('subtypes')->where('status', 'inactive')->get();
+
 
         return view('agents.inactive_listings',[
-
+            'inactive_listings' => $inactive_listings
         ]);
     }
 
     public function favourite_listings()
     {
         //
+        $favourite_listings = Listing::where('posted_by', Auth::id())->with('categories')->with('types')->with('subtypes')->where('status', 'inactive')->get();
+
 
         return view('agents.favourite_listings',[
-
+            'favourite_listings' => $favourite_listings
         ]);
     }
 
