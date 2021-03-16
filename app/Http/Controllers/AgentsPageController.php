@@ -246,8 +246,10 @@ class AgentsPageController extends Controller
     {
         //
 
-        return view('agents.messages',[
+        $my_messages = Message::where('_to',Auth::user()->id)->paginate(10);
 
+        return view('agents.messages',[
+            'my_messages' => $my_messages
         ]);
     }
 

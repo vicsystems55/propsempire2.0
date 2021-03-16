@@ -22,24 +22,24 @@
                     </div>
                 </div>
 
-                
+               
 
-                <div class="dropdown d-none d-lg-inline-block ml-1">
+                <!-- <div class="dropdown d-none d-lg-inline-block ml-1">
                     <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
                         <i class="mdi mdi-fullscreen"></i>
                     </button>
-                </div>
-
+                </div> -->
                 <?php
 
-                    $notifications = App\Notification::where('user_id', Auth::user()->id)->where('status','active')->get();
+                    $notifications = App\Notification::where('user_id', Auth::id())->where('status', 'unread')->get();
 
                 ?>
 
-                <div class="dropdown d-lg-inline-block ml-1">
+                <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="mdi mdi-bell-outline"></i>
-                        <span class="badge badge-danger badge-pill">{{$notifications->count()}}</span>
+                    <span class="badge badge-danger badge-pill">{{$notifications->count()}}</span> 
+                    <i class="mdi mdi-bell-outline"></i>
+                       
                     </button>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
                         <div class="p-3">
@@ -53,10 +53,10 @@
                             </div>
                         </div>
                         <div data-simplebar style="max-height: 230px;">
-                        
-                        @forelse($notifications as $notify)
 
-                        <a href="" class="text-reset notification-item">
+                            @forelse($notifications as $notify)
+
+                            <a href="" class="text-reset notification-item">
                                 <div class="media">
                                     <div class="avatar-xs mr-3">
                                         <span class="avatar-title bg-primary rounded-circle font-size-16">
@@ -74,13 +74,16 @@
                             </a>
 
 
-                        @empty
+                            @empty
 
-                            <h6 class="text-italic text-center p-5">empty</h6>
+                                <h4 class="text-center mt-1"> Empty...</h4>
 
+                            @endforelse
 
-                        @endforelse
                            
+                            
+                           
+
                             
                         </div>
                         <div class="p-2 border-top">
@@ -100,18 +103,15 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <!-- item-->
                         <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
-                        <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 align-middle mr-1"></i> My Wallet</a>
-                        <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
+                        <!-- <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 align-middle mr-1"></i> My Wallet</a> -->
+                        <!-- <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a> -->
+                        <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle mr-1"></i> Lock screen</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="{{route('account_logout')}}"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
+                        <a class="dropdown-item text-danger" href="#"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
                     </div>
                 </div>
 
-                <div class="dropdown d-inline-block">
-                    <!-- <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-                        <i class="mdi mdi-settings-outline"></i>
-                    </button> -->
-                </div>
+                
 
             </div>
             <div>
@@ -119,10 +119,10 @@
                 <div class="navbar-brand-box">
                     <a href="index" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="images/logo-sm.png" alt="" height="20">
+                            <img src="images/logo-sm.pn" alt="" height="20">
                         </span>
                         <span class="logo-lg">
-                            <img src="images/logo-dark.png" alt="" height="17">
+                            <img src="images/logo-dark.pn" alt="" height="17">
                         </span>
                     </a>
 
@@ -141,12 +141,12 @@
                 </button>
 
                 <!-- App Search-->
-                <!-- <form class="app-search d-none d-lg-inline-block">
+                <form class="app-search d-none d-lg-inline-block">
                     <div class="position-relative">
                         <input type="text" class="form-control" placeholder="Search...">
                         <span class="bx bx-search-alt"></span>
                     </div>
-                </form> -->
+                </form>
 
                 
             </div>

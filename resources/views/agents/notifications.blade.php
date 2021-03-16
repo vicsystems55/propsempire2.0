@@ -9,7 +9,11 @@
          @slot('li_1') View  @endslot
      @endcomponent
 
-<h2>Notifications</h2>
+
+
+<div class="card">
+    <div class="card-body">
+    <h2>Notifications</h2>
 
 <!-- <form action="">
     @csrf
@@ -18,7 +22,7 @@
 </form> -->
 {{$my_notifications->links()}}
 
-<ul class="list-group">
+    <ul class="list-group">
     @forelse($my_notifications as $my_notification)
 
     <li class="list-group-item {{$my_notification->status=='read'?'active':''}} border border-white" aria-current="true">
@@ -35,6 +39,8 @@
  
  
 </ul>
+    </div>
+</div>
 
 
 
