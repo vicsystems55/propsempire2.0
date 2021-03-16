@@ -96,6 +96,11 @@
                                         <input type="password" name="password_confirmation" class="form-control" id="userconfirmpassword" placeholder="Confirm password">
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="referral_code">{{ __('Referral Code') }} (Optional)</label>
+                                        <input type="text" name="referer_code" class="form-control" id="" placeholder="Enter Referral code if any">
+                                    </div>
+
                                     <div class="mt-4">
                                         <button class="btn btn-primary btn-block waves-effect waves-light" id="register" type="submit"> {{ __('Register') }}</button>
                                     </div>

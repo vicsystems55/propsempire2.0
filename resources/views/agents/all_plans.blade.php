@@ -101,7 +101,7 @@
                                         </div>
 
                                         <div class="text-center">
-                                            <a href="{{route('agents.single_plan_details', $plan->plan_name)}}" class="btn btn-primary waves-effect waves-light">Sign up Now</a>
+                                            <a href="{{route('agents.single_plan_details', $plan->plan_name)}}" class="btn btn-primary waves-effect waves-light">Subscribe</a>
                                         </div>
 
                                     </div>

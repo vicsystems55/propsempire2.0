@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('role')->default('agent');
             $table->string('user_code');
+            $table->string('referer_code')->nullable();
             $table->string('avatar')->default('avatar.png');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
