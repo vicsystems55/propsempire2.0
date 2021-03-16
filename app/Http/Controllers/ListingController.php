@@ -6,6 +6,12 @@ use Illuminate\Support\Str;
 
 use App\Listing;
 
+use App\Category;
+
+use App\Type;
+
+use App\ListingSubType;
+
 use App\MemberSubscription;
 
 use Auth;
@@ -20,6 +26,103 @@ class ListingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function get_types(Request $request)
+    {
+        
+        if ($request->category == '1') {
+
+            $types = Type::all();
+
+            // $types = ['Flat', 'House', 'Land', 'Commercial Property', 'Event Center/Venue'];
+
+            return $types;
+            # code...
+        }
+
+        if ($request->category == '2') {
+
+            $types = Type::where('id', '!=', '5')->get();
+            
+            // $types = ['Flat', 'House', 'Land', 'Commercial Property'];
+
+            return $types;
+            # code...
+        }
+
+        if ($request->category == '3') {
+
+            $types = Type::where('id', '!=', '5')->get();
+            
+            // $types = ['Flat', 'House', 'Land', 'Commercial Property'];
+
+            return $types;
+            # code...
+        }
+
+        if ($request->category == '4') {
+
+            $types = Type::where('id', '!=', '5')->get();
+            
+            // $types = ['Flat', 'House', 'Land', 'Commercial Property'];
+
+            return $types;
+            # code...
+        }
+    }
+
+    public function get_subtypes(Request $request)
+    {
+        
+        if ($request->type == '1') {
+
+            $subtypes = ListingSubType::whereIn('id', ['1','2','3','4','5'])->get();
+
+            // $types = ['Mini Flat', 'Self Contained (Single Rooms)'];
+
+            return $subtype;
+            # code...
+        }
+
+        if ($request->type == '2') {
+            
+            // $types = ['Detached Bungalow', 'Detached Duplex', 'Semi-detached Bungalow', 'Semi-detached Duplex', 'Terraced Bungalow', 'Terraced Duplex'];
+
+            $subtypes = ListingSubType::whereIn('id', ['1','2','3','4','5'])->get();
+
+            return $subtypes;
+            # code...
+        }
+
+        if ($request->type == '3') {
+            
+            // $types = ['Commercial Land', 'Industrial Land', 'Mixed-us Land', 'Residential Land'];
+
+            $subtypes = ListingSubType::whereIn('id', ['1','2','3','4','5'])->get();
+
+            return $subtypes;
+            # code...
+        }
+       
+        if ($request->type == '4') {
+            
+            // $types = ['Restaurant / Bar','School','Shop','Church','Factory','Filling Station','Hotel / Guest House','Office Space','Plaza / Complex / Mall','Tank Farm','Warehouse'];
+            $subtypes = ListingSubType::whereIn('id', ['1','2','3','4','5','6','7','8','9','10','11','12','13'])->get();
+
+            return $subtypes;
+            # code...
+        }
+
+        if ($request->type == '5') {
+            
+            // $types = ['Conference / meeting/ training Room'];
+
+            $subtypes = ListingSubType::whereIn('id', ['25'])->get();
+
+            return $subtypes;
+            # code...
+        }
+    }
 
     public function get_monthly_report()
     {

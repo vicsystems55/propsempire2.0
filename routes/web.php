@@ -56,6 +56,12 @@ Route::post('/create_listing', 'ListingController@create_listing')->name('create
 
 Route::get('/get_monthly_report', 'ListingController@get_monthly_report')->name('get_monthly_report');
 
+Route::get('/get_types', 'ListingController@get_types')->name('get_types');
+
+Route::get('/get_subtypes', 'ListingController@get_subtypes')->name('get_subtypes');
+
+
+
 Route::post('/upload_pix', 'ListingImageController@upload_pix')->name('upload_pix');
 
 Route::get('/publish', 'ListingController@publish')->name('publish_listing');

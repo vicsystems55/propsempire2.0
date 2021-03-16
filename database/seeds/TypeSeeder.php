@@ -13,18 +13,24 @@ class TypeSeeder extends Seeder
     {
         //
 
+        
+
         DB::table('types')->insertOrIgnore([
             [
-                'name' => 'Rent',
+                'name' => 'Flat',
             ],
             [
-                'name' => 'Sale',
+                'name' => 'House',
             ],
             [
-                'name' => 'Shortlet',
+                'name' => 'Land',
             ],
             [
-                'name' => 'Joint Venture',
+                'name' => 'Commercial Property',
+            ],
+
+            [
+                'name' => 'Event Center/venue',
             ],
            
         ]);

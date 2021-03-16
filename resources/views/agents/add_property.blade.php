@@ -61,7 +61,7 @@
 
                                 <div class="form-group">
                                     <label for="">Category</label>
-                                    <select name="category_id" id="_cat"  class="form-control">
+                                    <select onchange="get_type(this.id)" name="category_id" id="category_select"  class="form-control">
                                         <option value="">--Select Category--</option>
                                         @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option> 
@@ -70,8 +70,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">Type</label>
-                                    <select name="type_id"  class="form-control">
+                                    <label id="_type_label" for="">Type</label>
+                                    <select onchange="get_subtype(this.id)" name="type_id" id="_type"  class="form-control">
                                         <option value="">--Select Type--</option>
                                         @foreach($types as $type)
                                         <option value="{{$type->id}}">{{$type->name}}</option> 
@@ -80,8 +80,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">Subtype</label>
-                                    <select name="subtype_id"  class="form-control">
+                                    <label id="_subtype_label" for="">Subtype</label>
+                                    <select name="subtype_id" id="_subtype"  class="form-control">
                                         <option value="">--Select Subtype--</option>
                                         @foreach($subtypes as $subtype)
                                         <option value="{{$subtype->id}}">{{$subtype->name}}</option> 
@@ -102,7 +102,7 @@
 
                     <h3>Properties</h3>
 
-                    <fieldset>
+                    <fieldset >
                         
 
                       
@@ -234,18 +234,93 @@ $(document).on('change', '#'+searchInput, function () {
 
 <script>
 
-    
+// var allOfThem = $('#form-horizontal #category_select');
 
-$.ajax('/get_types', {
-    type: 'POST',  // http method
-    data: { myData: 'This is my data.' },  // data to submit
-    success: function (data, status, xhr) {
-        $('p').append('status: ' + status + ', data: ' + data);
+// console.log(allOfThem)
+
+// document.getElementById('category_select');
+
+function get_type(did) {
+
+    $("#_type_label").html('Loading...')
+    
+var did = $('#'+ did).val();
+    console.log(did)
+
+    $.ajax('/get_types', {
+    type: 'GET',  // http method
+    data: { 
+        category: did
+    }, 
+     // data to submit
+    success: function (response, status, xhr) {
+        // $('#_type').append('status: ' + status + ', data: ' + data);
+
+        $("#_type_label").html('Select Type')
+
+        console.log(response.length);
+        // console.log(response[0]['name']);
+
+        var len = response.length;
+
+                $("#_type").empty();
+                for( var i = 0; i<len; i++){
+                    var id = response[i]['id'];
+                    var name = response[i]['name'];
+                    
+                    $("#_type").append("<option value='"+id+"'>"+name+"</option>");
+                }
     },
     error: function (jqXhr, textStatus, errorMessage) {
+        $("#_type_label").html('Select Type')
             $('p').append('Error' + errorMessage);
     }
 });
+}
+
+function get_subtype(did) {
+
+    $("#_subtype_label").html('Loading...')
+
+    var did = $('#'+ did).val();
+    console.log(did)
+
+    $.ajax('/get_subtypes', {
+    type: 'GET',  // http method
+    data: { 
+        type: did
+    }, 
+    // data to submit
+    success: function (response, status, xhr) {
+        // $('#_type').append('status: ' + status + ', data: ' + data);
+
+        $("#_subtype_label").html('Select Type')
+
+        console.log(response.length);
+        // console.log(response[0]['name']);
+
+        var len = response.length;
+
+                $("#_subtype").empty();
+                for( var i = 0; i<len; i++){
+                    var id = response[i]['id'];
+                    var name = response[i]['name'];
+                    
+                    $("#_subtype").append("<option value='"+id+"'>"+name+"</option>");
+                }
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+        $("#_subtype_label").html('Select Type')
+            $('p').append('Error' + errorMessage);
+    }
+    });
+}
+
+
+
+
+
+
 
 
 </script>

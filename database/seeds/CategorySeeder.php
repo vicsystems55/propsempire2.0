@@ -14,20 +14,16 @@ class CategorySeeder extends Seeder
         //
         DB::table('categories')->insertOrIgnore([
             [
-                'name' => 'Flat',
+                'name' => 'Rent',
             ],
             [
-                'name' => 'House',
+                'name' => 'Sale',
             ],
             [
-                'name' => 'Land',
+                'name' => 'Shortlet',
             ],
             [
-                'name' => 'Commercial Property',
-            ],
-
-            [
-                'name' => 'Event Center/venue',
+                'name' => 'Joint Venture',
             ],
            
         ]);
