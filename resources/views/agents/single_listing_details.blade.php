@@ -23,13 +23,14 @@
             <div class="card-body">
                <div class="row">
                 <div class="col-md-4 text-center p-2 {{$my_subscription?'':'d-none'}}">
-                    <button id="{{$single_listing->status =='published'?'unpublish':'publish'}}" class="btn btn-{{$single_listing->status =='published'?'warning':'primary'}} shadow">{{$single_listing->status =='published'?'UNPUBLISH':'PUBLISH'}}</button>
+                    <button id="{{$single_listing->status =='published'?'unpublish':'publish'}}" class="shadow btn btn-{{$single_listing->status =='published'?'warning':'primary'}} shadow">{{$single_listing->status =='published'?'UNPUBLISH':'PUBLISH'}}</button>
                 </div>
                 <div class="col-md-4 text-center p-2 {{$my_subscription?'':'d-none'}}">
-                    <button class="btn btn-primary shadow">PUBLISH AS PREMIUM </button>
+                    <button id="{{$single_listing->premium =='1'?'unmake_premium':'make_premium'}}" class="shadow btn btn-{{$single_listing->premium =='1'?'warning':'primary'}} shadow">{{$single_listing->premium =='1'?'REMOVE AS PREMIUM':'MAKE PREMIUM'}}</button>
                 </div>
+                
                 <div class="col-md-4 text-center p-2">
-                    <a href="{{route('agents.all_plans')}}" class="btn btn-primary shadow">{{$my_subscription?'UPGRADE':'PURCHASE'}}</a>
+                    <a href="{{route('agents.all_plans')}}" class="shadow btn btn-primary shadow">{{$my_subscription?'UPGRADE':'PURCHASE'}}</a>
                 </div>
                </div>
             </div>
@@ -100,12 +101,12 @@
                         <td>
                         <i class="fas fa-tape"></i><br>
                         Total Area:
-                        {{$single_listing->total_area}} sqr.mtrs
+                        {{number_format($single_listing->total_area, 2)}} sqr.mtrs
                         </td>
                         <td>
                         <i class="fas fa-tape"></i><br>
                         Covered Area:
-                        {{$single_listing->coverd_area}}
+                        {{$single_listing->covered_area}}
                         </td>
  
                     </tr>
@@ -123,18 +124,27 @@
                 <h4 class="card-title"> Listing Assets</h4>
 
                 <div id="lightgallery">
-                    <a href="{{config('app.url')}}listing_images/default.jpg">
-                        <img class="shadow" style="width:120px; height:120px;" src="{{config('app.url')}}listing_images/default.jpg" />
-                    </a>
-                    <a href="{{config('app.url')}}listing_images/default.jpg">
-                        <img class="shadow" style="width:120px; height:120px;" src="{{config('app.url')}}listing_images/default.jpg" />
-                    </a>
+
+                        @forelse($listing_images as $image)
+
+                        <a href="{{config('app.url')}}listing_images/{{$image->img_path}}">
+                            <img class="shadow" style="min-width:120px; min-height:120px; max-width:200px; max-height:200px;" src="{{config('app.url')}}listing_images/{{$image->img_path}}" />
+                        </a>
+
+                        @empty
+
+                            <h4 class="text-center">No images uploaded yet...</h4>
+
+                        @endforelse
+                    
+
+                   
                    
                 </div>
 
 
                 <p class="card-title-desc"></p>
-                <form action="#"
+                <form method="post" action="{{route('upload_pix')}}"
                     class="dropzone "
                     id="my-awesome-dropzone">
                     @csrf
@@ -237,12 +247,13 @@
           },
 
           sending: function(file, xhr, formData){
-            formData.append("listing_id", '');
-            formData.append("listing_slug", '');
+            formData.append("listing_id", '{{$single_listing->id}}');
+            formData.append("listing_slug", '{{$single_listing->slug}}');
            
           },
 
           success: function(file, data){
+            Swal.fire('Image Uploaded')
             console.log(data);
 
            
@@ -297,6 +308,7 @@
 <script>
 
     $('#publish').click(function(){
+        $('#publish').html('processing...')
         $.ajax('/publish', {
             type: 'GET',  // http method
             data: {
@@ -304,19 +316,22 @@
                 
                 },  // data to submit
             success: function (data, status, xhr) {
-                $('#publish').addClass('btn-primary'); // add class
-                $('#publish').html('UNPUBLISH') // change text
+                $('#publish').removeClass('btn-primary');
+                $('#publish').addClass('btn-warning'); // add class
+                $('#publish').html('UNPUBLISH')
+                $('#published_counter').html(data) // change text
                 Swal.fire('Published')
                     alert(data)
                 // $('p').append('status: ' + status + ', data: ' + data);
             },
             error: function (jqXhr, textStatus, errorMessage) {
-                    $('p').append('Error' + errorMessage);
+                    console.log('Error' + errorMessage);
             }
         });
     });
 
     $('#unpublish').click(function(){
+        $('#unpublish').html('processing...')
         $.ajax('/unpublish', {
             type: 'GET',  // http method
             data: {
@@ -324,50 +339,66 @@
                 
                 },  // data to submit
             success: function (data, status, xhr) {
-                Swal.fire('Published')
+                $('#unpublish').removeClass('btn-warning');
+                $('#unpublish').addClass('btn-primary'); // add class
+                $('#unpublish').html('PUBLISH') 
+                $('#published_counter').html(data) // change text
+                Swal.fire('unpublished')
                     alert(data)
                 // $('p').append('status: ' + status + ', data: ' + data);
             },
             error: function (jqXhr, textStatus, errorMessage) {
-                    $('p').append('Error' + errorMessage);
+                   console.log('Error' + errorMessage);
             }
         });
     });
 
 
     $('#make_premium').click(function(){
-        $.ajax('/publish', {
+        $('#make_premium').html('processing...')
+        $.ajax('/make_premium', {
             type: 'GET',  // http method
             data: {
                  slug: '{{$single_listing->slug}}'
                 
                 },  // data to submit
             success: function (data, status, xhr) {
+                // $('#make_premium').removeClass('btn-primary');
+                $('#make_premium').addClass('btn-success'); // add class
+                $('#make_premium').html('PUBLISHED AS PREMIUM') // change text
+                Swal.fire('Changed to premium listing')
                     alert(data)
                 // $('p').append('status: ' + status + ', data: ' + data);
             },
             error: function (jqXhr, textStatus, errorMessage) {
-                    $('p').append('Error' + errorMessage);
+                    console.log('Error' + errorMessage);
             }
         });
     });
 
     $('#unmake_premium').click(function(){
-        $.ajax('/publish', {
+        $('#unmake_premium').html('processing...')
+        $.ajax('/unmake_premium', {
             type: 'GET',  // http method
             data: {
                  slug: '{{$single_listing->slug}}'
                 
                 },  // data to submit
             success: function (data, status, xhr) {
+                $('#make_premium').removeClass('btn-success');
+                $('#make_premium').addClass('btn-primary'); // add class
+                $('#unmake_premium').html('PUBLISHE AS PREMIUM') // change text
+                Swal.fire('Removed as premium listing')
                     alert(data)
                 // $('p').append('status: ' + status + ', data: ' + data);
             },
             error: function (jqXhr, textStatus, errorMessage) {
-                    $('p').append('Error' + errorMessage);
+                    console.log('Error' + errorMessage);
             }
         });
     });
+
+    
 
 </script>
 

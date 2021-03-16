@@ -18,16 +18,31 @@
             <div class="">
 
             <?php
-                $my_subscription = App\MemberSubscription::where('agent_id', Auth::user()->id)->first();
+                $my_subscription = App\MemberSubscription::with('subscription_plans')->where('agent_id', Auth::user()->id)->first();
+
+                $listing_published = App\Listing::where('posted_by', Auth::id())->where('status', 'published')->get();
+
+                // $my_subscriptionx = MemberSubscription::with('subscription_plans')->where('agent_id', Auth::id())->first();
             ?>
+
+                @if($my_subscription)
 
                 <div class="card">
                     <div class="card-body">
                     <h6>Current Subscription:</h6>
                         <h4>{{$my_subscription->plan_name??'FREE PLAN'}}</h4>
+
+                    <h6>Published Listings:</h6>
+                    <h4><span id="published_counter">{{$listing_published->count()}}</span>/ {{$my_subscription->subscription_plans->max_listings}}</h4>
                         <a href="" class="btn btn-success shadow">Upgrade</a>
                     </div>
                 </div>
+
+
+
+                @else
+
+                @endif
                 
 
             </div>

@@ -29,7 +29,7 @@
                                             <h6 class="font-weight-bold">EXPIRED LISTINGS</h6>
 
                                             <div>
-                                                <a href="#" class="btn btn-success btn-sm">View more</a>
+                                                <a href="{{route('agents.all_listings')}}" class="btn btn-success btn-sm">View more</a>
                                             </div>
                                         </div>
                                        

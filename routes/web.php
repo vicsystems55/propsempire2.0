@@ -54,13 +54,17 @@ Route::get('/create_subscription', 'MemberSubscriptionController@create_subscrip
 
 Route::post('/create_listing', 'ListingController@create_listing')->name('create_listing');
 
+Route::post('/upload_pix', 'ListingImageController@upload_pix')->name('upload_pix');
+
 Route::get('/publish', 'ListingController@publish')->name('publish_listing');
 
 Route::get('/unpublish', 'ListingController@unpublish')->name('unpublish_listing');
 
 Route::post('/delete', 'ListingController@delete')->name('delete_listing');
 
-Route::post('/make_premium', 'ListingController@make_premium')->name('make_premium');
+Route::get('/make_premium', 'ListingController@make_premium')->name('make_premium');
+
+Route::get('/unmake_premium', 'ListingController@unmake_premium')->name('unmake_premium');
 
 Route::view('/sub_success', 'agents/sub_success')->name('sub_success');
 

@@ -24,7 +24,39 @@ class ListingController extends Controller
     {
         //
 
-        return back()->with('msg', 'Done');
+        // dd($request);
+
+        $listing = Listing::where('slug', $request->slug)->update([
+            'premium' => '1'
+        ]);
+
+        // $listing_published = Listing::where('posted_by', Auth::id())->where('status', 'published')->get();
+
+        // $my_subscription = MemberSubscription::with('subscription_plans')->where('agent_id', Auth::id())->first();
+
+
+        return $listing;
+
+        // return back()->with('msg', 'Done');
+    }
+    public function unmake_premium(Request $request)
+    {
+        //
+
+        // dd($request);
+
+        $listing = Listing::where('slug', $request->slug)->update([
+            'premium' => '0'
+        ]);
+
+        // $listing_published = Listing::where('posted_by', Auth::id())->where('status', 'published')->get();
+
+        // $my_subscription = MemberSubscription::with('subscription_plans')->where('agent_id', Auth::id())->first();
+
+
+        return $listing;
+
+        // return back()->with('msg', 'Done');
     }
 
     /**
@@ -42,12 +74,12 @@ class ListingController extends Controller
             'status' => 'published'
         ]);
 
-        // $listing_published = Listing::where('posted_by', Auth::id())->where('status', 'published')->get();
+        $listing_published = Listing::where('posted_by', Auth::id())->where('status', 'published')->get();
 
         // $my_subscription = MemberSubscription::with('subscription_plans')->where('agent_id', Auth::id())->first();
 
 
-        return $listing;
+        return $listing_published->count();
 
         // return back()->with('msg', 'Done');
     }
@@ -60,11 +92,11 @@ class ListingController extends Controller
             'status' => 'inactive'
         ]);
 
-        // $listing_published = Listing::where('posted_by', Auth::id())->where('status', 'published')->get();
+        $listing_published = Listing::where('posted_by', Auth::id())->where('status', 'published')->get();
 
         // $my_subscription = MemberSubscription::with('subscription_plans')->where('agent_id', Auth::id())->first();
 
-        return $listing;
+        return $listing_published->count();
     }
 
     public function delete(Request $request)

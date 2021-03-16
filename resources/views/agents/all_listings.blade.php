@@ -33,7 +33,7 @@
                                         <tbody>
 
                                             @foreach($all_listings as $list)
-                                            <tr>
+                                            <tr class="{{$list->status=='published'?'bg-success':''}}">
                                                 <td>{{$list->title}}</td>
                                                 
                                                 <td>{{$list->categories->name}}</td>

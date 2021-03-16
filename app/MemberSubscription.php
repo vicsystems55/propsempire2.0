@@ -12,6 +12,6 @@ class MemberSubscription extends Model
     public function subscription_plans()
     {
         
-        return $this->hasMany('App\SubscriptionPlan', 'subscription_plan_id', 'id');
+        return $this->belongsTo('App\SubscriptionPlan', 'subscription_plan_id');
     }
 }

@@ -20,6 +20,7 @@ use App\ListingSubType;
 
 use App\Notification;
 
+use App\ListingImage;
 
 use App\MemberSubscription;
 
@@ -177,10 +178,13 @@ class AgentsPageController extends Controller
 
         $my_subscription = MemberSubscription::where('agent_id', Auth::id())->first();
 
+        $listing_images = ListingImage::where('listing_slug', $slug)->latest()->get();
+
         return view('agents.single_listing_details',[
                 
             'single_listing' => $single_listing,
-            'my_subscription' => $my_subscription
+            'my_subscription' => $my_subscription,
+            'listing_images' => $listing_images
         ]);
     }
 
