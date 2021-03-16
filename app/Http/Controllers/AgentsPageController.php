@@ -175,9 +175,12 @@ class AgentsPageController extends Controller
 
         $single_listing = Listing::where('slug', $slug)->with('categories')->with('types')->with('subtypes')->first();
 
+        $my_subscription = MemberSubscription::where('agent_id', Auth::id())->first();
+
         return view('agents.single_listing_details',[
                 
-            'single_listing' => $single_listing
+            'single_listing' => $single_listing,
+            'my_subscription' => $my_subscription
         ]);
     }
 

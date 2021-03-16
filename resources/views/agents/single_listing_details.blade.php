@@ -10,6 +10,8 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/css/lightgallery.css" integrity="sha512-I/g40Mx7U2Oepd3iHIpQRqdQGJ3vgdw0ix8LxGxX9zKv1MDizjD6dRcJ3PC1qpyfkj4rikVNcpBKcnmuJWUaTQ==" crossorigin="anonymous" /> 
 
+<link href="{{ URL::asset('/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+
 
      @component('common-components.breadcrumb')
          @slot('title') Listing  @endslot
@@ -20,14 +22,14 @@
         <div class="card">
             <div class="card-body">
                <div class="row">
-                <div class="col-md-4 text-center p-2">
-                    <button id="publish" class="btn btn-primary shadow">PUBLISH</button>
+                <div class="col-md-4 text-center p-2 {{$my_subscription?'':'d-none'}}">
+                    <button id="{{$single_listing->status =='published'?'unpublish':'publish'}}" class="btn btn-{{$single_listing->status =='published'?'warning':'primary'}} shadow">{{$single_listing->status =='published'?'UNPUBLISH':'PUBLISH'}}</button>
                 </div>
-                <div class="col-md-4 text-center p-2">
+                <div class="col-md-4 text-center p-2 {{$my_subscription?'':'d-none'}}">
                     <button class="btn btn-primary shadow">PUBLISH AS PREMIUM </button>
                 </div>
                 <div class="col-md-4 text-center p-2">
-                    <button class="btn btn-primary shadow">UPGRADE PLAN</button>
+                    <a href="{{route('agents.all_plans')}}" class="btn btn-primary shadow">{{$my_subscription?'UPGRADE':'PURCHASE'}}</a>
                 </div>
                </div>
             </div>
@@ -274,6 +276,13 @@
 <script src="https://cdn.rawgit.com/sachinchoolur/lg-hash.js/master/dist/lg-hash.js"></script>
 <script src="https://cdn.rawgit.com/sachinchoolur/lg-share.js/master/dist/lg-share.js"></script>
 
+
+<!-- Sweet Alerts js -->
+<script src="{{ URL::asset('/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+
+<!-- Sweet alert init js-->
+<script src="{{ URL::asset('/js/pages/sweet-alerts.init.js')}}"></script>
+
 <script>
 
     lightGallery(document.getElementById('lightgallery'), {
@@ -295,7 +304,63 @@
                 
                 },  // data to submit
             success: function (data, status, xhr) {
-                    alert('we')
+                $('#publish').addClass('btn-primary'); // add class
+                $('#publish').html('UNPUBLISH') // change text
+                Swal.fire('Published')
+                    alert(data)
+                // $('p').append('status: ' + status + ', data: ' + data);
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                    $('p').append('Error' + errorMessage);
+            }
+        });
+    });
+
+    $('#unpublish').click(function(){
+        $.ajax('/unpublish', {
+            type: 'GET',  // http method
+            data: {
+                 slug: '{{$single_listing->slug}}'
+                
+                },  // data to submit
+            success: function (data, status, xhr) {
+                Swal.fire('Published')
+                    alert(data)
+                // $('p').append('status: ' + status + ', data: ' + data);
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                    $('p').append('Error' + errorMessage);
+            }
+        });
+    });
+
+
+    $('#make_premium').click(function(){
+        $.ajax('/publish', {
+            type: 'GET',  // http method
+            data: {
+                 slug: '{{$single_listing->slug}}'
+                
+                },  // data to submit
+            success: function (data, status, xhr) {
+                    alert(data)
+                // $('p').append('status: ' + status + ', data: ' + data);
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                    $('p').append('Error' + errorMessage);
+            }
+        });
+    });
+
+    $('#unmake_premium').click(function(){
+        $.ajax('/publish', {
+            type: 'GET',  // http method
+            data: {
+                 slug: '{{$single_listing->slug}}'
+                
+                },  // data to submit
+            success: function (data, status, xhr) {
+                    alert(data)
                 // $('p').append('status: ' + status + ', data: ' + data);
             },
             error: function (jqXhr, textStatus, errorMessage) {
@@ -305,5 +370,7 @@
     });
 
 </script>
+
+
 
 @endsection

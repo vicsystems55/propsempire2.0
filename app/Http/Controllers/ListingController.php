@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 
 use App\Listing;
 
+use App\MemberSubscription;
+
 use Auth;
 
 
@@ -36,7 +38,16 @@ class ListingController extends Controller
 
         // dd($request);
 
-        return 'yes married';
+        $listing = Listing::where('slug', $request->slug)->update([
+            'status' => 'published'
+        ]);
+
+        // $listing_published = Listing::where('posted_by', Auth::id())->where('status', 'published')->get();
+
+        // $my_subscription = MemberSubscription::with('subscription_plans')->where('agent_id', Auth::id())->first();
+
+
+        return $listing;
 
         // return back()->with('msg', 'Done');
     }
@@ -45,14 +56,30 @@ class ListingController extends Controller
     {
         //
 
-        return back()->with('msg', 'Done');
+        $listing = Listing::where('slug', $request->slug)->update([
+            'status' => 'inactive'
+        ]);
+
+        // $listing_published = Listing::where('posted_by', Auth::id())->where('status', 'published')->get();
+
+        // $my_subscription = MemberSubscription::with('subscription_plans')->where('agent_id', Auth::id())->first();
+
+        return $listing;
     }
 
     public function delete(Request $request)
     {
         //
 
-        return back()->with('msg', 'Done');
+        $listing = Listing::where('slug', $request->slug)->update([
+            'status' => 'published'
+        ]);
+
+        $listing_published = Listing::where('posted_by', Auth::id())->where('status', 'published')->get();
+
+        $my_subscription = MemberSubscription::with('subscription_plans')->where('agent_id', Auth::id())->first();
+
+        return $listing;
     }
 
     /**

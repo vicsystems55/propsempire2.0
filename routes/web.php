@@ -56,7 +56,7 @@ Route::post('/create_listing', 'ListingController@create_listing')->name('create
 
 Route::get('/publish', 'ListingController@publish')->name('publish_listing');
 
-Route::post('/unpublish', 'ListingController@unpublish')->name('unpublish_listing');
+Route::get('/unpublish', 'ListingController@unpublish')->name('unpublish_listing');
 
 Route::post('/delete', 'ListingController@delete')->name('delete_listing');
 
