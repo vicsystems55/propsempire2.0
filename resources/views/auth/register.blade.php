@@ -98,7 +98,7 @@
 
                                     <div class="form-group">
                                         <label for="referral_code">{{ __('Referral Code') }} (Optional)</label>
-                                        <input type="text" name="referer_code" class="form-control" id="" placeholder="Enter Referral code if any">
+                                        <input type="text" name="referer_code" class="form-control" id="" value="system" placeholder="Enter Referral code if any">
                                     </div>
 
                                     <div class="mt-4">
