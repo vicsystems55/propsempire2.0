@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'role' => $data['role'],
             'user_code' => $regCode,
-            'referer_code' => $referer_code,
+            'referer_code' => $referer_code??'system',
             'password' => Hash::make($data['password']),
         ]);
     }
