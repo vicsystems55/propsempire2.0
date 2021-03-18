@@ -15,11 +15,11 @@
     <div class="card-body">
     <h5>My Profile</h5>
 
-<!-- <form action="">
-    @csrf
-    <input type="text" class="form-control" placeholder="Search...">
-    <button class="btn btn-primary btn-rounded shadow">Search</button>
-</form> -->
+    <!-- <form action="">
+        @csrf
+        <input type="text" class="form-control" placeholder="Search...">
+        <button class="btn btn-primary btn-rounded shadow">Search</button>
+    </form> -->
 
     </div>
 </div>

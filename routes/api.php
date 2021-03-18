@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/all_listings', 'Api\ListingController@all_listings');
+
+Route::post('/single_listing', 'Api\ListingController@single_listing');
+
+
+Route::post('/search', 'Api\ListingController@search');
+
+Route::get('/like/{slug}', 'Api\ListingController@single_listing');

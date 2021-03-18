@@ -8,4 +8,11 @@ class ListingImage extends Model
 {
     //
     protected $guarded = [];
+
+    public function lisings()
+    {
+        
+        
+        return $this->belongsTo('App\Listing');
+    }
 }
