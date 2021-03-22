@@ -28,7 +28,7 @@ class ListingController extends Controller
     {
         //
 
-        $all_listings = Listing::with('images')->where('status', 'published')->latest()->get();
+        $all_listings = Listing::with('agents')->with('categories')->with('types')->with('subtypes')->with('images')->where('status', 'published')->latest()->get();
 
         return $all_listings;
     }
@@ -42,7 +42,7 @@ class ListingController extends Controller
     {
         //
 
-        $single_listing = Listing::with('images')->where('slug', $request->slug)->where('status', 'published')->first();
+        $single_listing = Listing::with('agents')->with('categories')->with('types')->with('subtypes')->with('images')->where('slug', $request->slug)->where('status', 'published')->first();
 
         Listing::find($single_listing->id)->increment('views');
 
@@ -52,13 +52,25 @@ class ListingController extends Controller
     public function search(Request $request)
     {
         //
+        if ($request->key == '') {
+            # code...
+            $results = Listing::with('agents')->with('categories')->with('types')->with('subtypes')->with('images')->where('title','like','%' . $request->key.'%')->orwhere('description','like', '%' .$request->key.'%')->orwhere('location','like', '%' .$request->key.'%')->get();
 
-        $results = Listing::where('title','like', $request->key.'%')->orwhere('description','like', $request->key.'%')->orwhere('location','like', $request->key.'%')->get();
+             return $results;
+
+        }else{
+
+            $results = Listing::with('agents')->with('categories')->with('types')->with('subtypes')->with('images')->where('title','like', '%' .$request->key.'%')->orwhere('description','like','%' . $request->key.'%')->orwhere('location','like', '%' .$request->key.'%')->get();
 
         // Listing::find($single_listing->id)->increment('views');
 
         return $results;
+        }
+
+
     }
+
+        
 
     /**
      * Store a newly created resource in storage.

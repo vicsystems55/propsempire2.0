@@ -25,6 +25,11 @@ class Listing extends Model
             return $this->belongsTo('App\ListingSubType', 'subtype_id', 'id');
     }
 
+    public function agents()
+    {
+            return $this->belongsTo('App\User', 'posted_by', 'id');
+    }
+
     public function images()
     {
             return $this->hasMany('App\ListingImage','listing_id', 'id');

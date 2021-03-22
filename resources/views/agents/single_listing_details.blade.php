@@ -22,10 +22,10 @@
         <div class="card">
             <div class="card-body">
                <div class="row">
-                <div class="col-md-4 text-center p-2 {{$my_subscription?'':'d-none'}}">
+                <div class="col-md-4 text-center p-2 {{$my_subscription?'':'d-none'}} {{$listing_images->count()<1?'d-none':''}}">
                     <button id="{{$single_listing->status =='published'?'unpublish':'publish'}}" class="shadow btn btn-{{$single_listing->status =='published'?'warning':'primary'}} shadow">{{$single_listing->status =='published'?'UNPUBLISH':'PUBLISH'}}</button>
                 </div>
-                <div class="col-md-4 text-center p-2 {{$my_subscription?'':'d-none'}}">
+                <div class="col-md-4 text-center p-2 {{$my_subscription?'':'d-none'}} {{$listing_images->count()<1?'d-none':''}}">
                     <button id="{{$single_listing->premium =='1'?'unmake_premium':'make_premium'}}" class="shadow btn btn-{{$single_listing->premium =='1'?'warning':'primary'}} shadow">{{$single_listing->premium =='1'?'REMOVE AS PREMIUM':'MAKE PREMIUM'}}</button>
                 </div>
                 
@@ -130,6 +130,9 @@
                         <a href="{{config('app.url')}}listing_images/{{$image->img_path}}">
                             <img class="shadow" style="min-width:120px; min-height:120px; max-width:200px; max-height:200px;" src="{{config('app.url')}}listing_images/{{$image->img_path}}" />
                         </a>
+                       
+
+                        
 
                         @empty
 
