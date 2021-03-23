@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ListingImage;
 use Illuminate\Http\Request;
 use Auth;
+use Image;
 
 class ListingImageController extends Controller
 {
@@ -54,6 +55,10 @@ class ListingImageController extends Controller
                 'order' => 2
                 
             ]);
+
+            $img = Image::make(public_path('listing_images/'.$newname));    
+            $img->insert(public_path('listing_images/watermark.png'),'bottom-right',10, 10); 
+            $img->save();
 
         return $upload;
 

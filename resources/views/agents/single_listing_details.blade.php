@@ -145,6 +145,16 @@
                    
                 </div>
 
+                
+
+            <form enctype="multipart/form-data" action="{{route('upload_pix')}}" method="post">
+                @csrf
+                <input type="file" name="file" id="">
+                <input type="text" name="listing_id" value="{{$single_listing->id}}">
+                <input type="text" name="listing_slug" value="{{$single_listing->slug}}">
+                <button class="btn btn-sm">upload!</button>
+            </form>
+
 
                 <p class="card-title-desc"></p>
                 <form method="post" action="{{route('upload_pix')}}"
