@@ -18,6 +18,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
        
         <script>
+
+                        
                 
                 function fetchdata(){
                         $.ajax({
@@ -31,7 +33,8 @@
                         //         'You clicked the button!',
                         //         'success'
                         //         )
-
+                        var audio = new Audio("/sound/notify.mp3");
+                        audio.play();
                         Command: toastr["info"]("Check Message", "New Request")
 
                                 toastr.options = {
@@ -60,7 +63,7 @@
                     }
 
                     $(document).ready(function(){
-                    setInterval(fetchdata,5000);
+                    setInterval(fetchdata,8000);
                     });
 
 
