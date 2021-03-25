@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Message;
+use App\Listing;
+use App\Notification;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -36,6 +38,38 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         //
+
+        // $request->validate([
+            
+        // ]);
+
+        $message = Message::updateOrCreate([
+            '_from_name' => $request->_from_name,
+            '_from_phone' => $request->_from_phone,
+            '_from_email' => $request->_from_email,
+            'prop_slug' => $request->slug,
+            'body' => $request->body
+        ],[
+            '_from_name' => $request->_from_name,
+            '_from_phone' => $request->_from_phone,
+            '_from_email' => $request->_from_email,
+            '_to' => $request->_to,
+            'prop_slug' => $request->slug,
+            '_to_name' => $request->_to_name,
+            'title' => 'Request',
+            'body' => $request->body,
+          
+            ]);
+
+            $listing = Listing::where('slug', $request->slug)->first();
+
+            Notification::Create([
+                'user_id' => $request->_to,
+                'title' => 'Request Notice',
+                'body' => 'You just received a request on a property: ' .$listing->title,
+             ]);
+
+        return $message;
     }
 
     /**

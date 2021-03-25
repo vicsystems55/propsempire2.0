@@ -48,6 +48,8 @@ Route::get('/account_logout', 'RoutingController@logout')->name('account_logout'
 // Laravel 5.1.17 and above
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 
+Route::get('/check_notifications', 'NotificationController@check')->name('check_notification');
+
 
 
 Route::get('/create_subscription', 'MemberSubscriptionController@create_subscription')->name('create_subscription');

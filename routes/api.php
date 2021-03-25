@@ -26,3 +26,6 @@ Route::post('/single_listing', 'Api\ListingController@single_listing');
 Route::post('/search', 'Api\ListingController@search');
 
 Route::get('/like/{slug}', 'Api\ListingController@single_listing');
+
+
+Route::post('/send_message', 'MessageController@store');

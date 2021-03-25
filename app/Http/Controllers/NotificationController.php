@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Notification;
 use Illuminate\Http\Request;
+use Auth;
 
 class NotificationController extends Controller
 {
@@ -12,9 +13,24 @@ class NotificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function check()
     {
         //
+
+            $latest_notification = Notification::where('user_id', Auth::user()->id)->latest()->first();
+
+                if ($latest_notification->status == 'unread') {
+                    # code...
+
+                    return '1';
+                }else{
+                
+                    return '0';
+
+                }
+
+
+       
     }
 
     /**

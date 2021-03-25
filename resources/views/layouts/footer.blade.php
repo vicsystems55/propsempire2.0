@@ -2,6 +2,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
+
+              
+
+
+
+
                 <script>document.write(new Date().getFullYear())</script> © Propsempire.
             </div>
             <div class="col-sm-6">

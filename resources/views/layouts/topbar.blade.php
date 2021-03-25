@@ -29,6 +29,8 @@
                         <i class="mdi mdi-fullscreen"></i>
                     </button>
                 </div> -->
+
+               
                 <?php
 
                     $notifications = App\Notification::where('user_id', Auth::id())->where('status', 'unread')->get();

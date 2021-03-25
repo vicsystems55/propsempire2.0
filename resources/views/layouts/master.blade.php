@@ -10,6 +10,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('images/favicon.ico')}}">
+    <link href="{{ URL::asset('/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+
+
+<!-- Sweet alert init js-->
+
     @include('layouts.head')
 </head>
 
@@ -34,7 +39,7 @@
         <div id="layout-wrapper">
 
             @include('layouts.topbar')
-            @include('layouts.sidebar')
+            @include('layouts.agents_sidebar')
 
             
             <!-- ============================================================== -->
