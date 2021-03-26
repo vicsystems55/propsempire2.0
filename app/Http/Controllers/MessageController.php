@@ -53,7 +53,7 @@ class MessageController extends Controller
             'from_name' => $request->from_name,
             'from_phone' => $request->from_phone,
             'from_email' => $request->from_email,
-            'to' => $request->to,
+            'to_id' => $request->to,
             'prop_slug' => $request->slug,
             'to_name' => $request->to_name,
             'title' => 'Request',
