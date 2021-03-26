@@ -17,7 +17,7 @@ class NotificationController extends Controller
     {
         //
 
-            $latest_notification = Notification::where('user_id', Auth::user()->id)->where('title', 'Request')->latest()->first();
+            $latest_notification = Notification::where('user_id', Auth::user()->id)->where('title', 'Request Notice')->latest()->first();
 
                 if ($latest_notification->status == 'unread') {
                     # code...
@@ -28,6 +28,8 @@ class NotificationController extends Controller
                     return '0';
 
                 }
+
+            // return 2;
 
 
        
