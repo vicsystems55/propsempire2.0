@@ -44,18 +44,18 @@ class MessageController extends Controller
         // ]);
 
         $message = Message::updateOrCreate([
-            '_from_name' => $request->_from_name,
-            '_from_phone' => $request->_from_phone,
-            '_from_email' => $request->_from_email,
+            'from_name' => $request->from_name,
+            'from_phone' => $request->from_phone,
+            'from_email' => $request->from_email,
             'prop_slug' => $request->slug,
             'body' => $request->body
         ],[
-            '_from_name' => $request->_from_name,
-            '_from_phone' => $request->_from_phone,
-            '_from_email' => $request->_from_email,
-            '_to' => $request->_to,
+            'from_name' => $request->from_name,
+            'from_phone' => $request->from_phone,
+            'from_email' => $request->from_email,
+            'to' => $request->to,
             'prop_slug' => $request->slug,
-            '_to_name' => $request->_to_name,
+            'to_name' => $request->to_name,
             'title' => 'Request',
             'body' => $request->body,
           
@@ -64,7 +64,7 @@ class MessageController extends Controller
             $listing = Listing::where('slug', $request->slug)->first();
 
             Notification::Create([
-                'user_id' => $request->_to,
+                'user_id' => $request->to,
                 'title' => 'Request Notice',
                 'body' => 'You just received a request on a property: ' .$listing->title,
              ]);
