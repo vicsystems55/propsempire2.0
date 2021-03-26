@@ -42,7 +42,7 @@ class AgentsPageController extends Controller
 
         $my_subscription = MemberSubscription::where('agent_id', Auth::user()->id)->get();
 
-        $my_messages = Message::where('_to', Auth::user()->id)->get();
+        $my_messages = Message::where('to_id', Auth::user()->id)->get();
 
         $my_listings = Listing::where('posted_by', Auth::user()->id)->get();
 
